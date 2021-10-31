@@ -1,0 +1,57 @@
+﻿@model Cadastro.Domain.Entities.Product
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<font color="#FFFAFA"><h1>Adicionar nova classe</h1></font>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+                <div class="form-group">
+                    <label asp-for="Value" class="control-label"></label>
+                    <input asp-for="Value" class="form-control" />
+                    <span asp-validation-for="Value" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="IdCategory" class="control-label"></label>
+                    <select asp-for="IdCategory" class="form-control" asp-items="ViewBag.IdCategory"></select>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Criar" class="btn btn-primary" />
+                </div>
+</form>
+    </div>
+</div>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            background-color: #A9A9A9;
+        }
+    </style>
+</head>
+<body>
+    <style>
+        body {
+            background-color: #A9A9A9;
+        }
+    </style>
+</body>
+</html>
+<div>
+    <a asp-action="Index">Voltar</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

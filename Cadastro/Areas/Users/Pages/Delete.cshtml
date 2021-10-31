@@ -1,0 +1,61 @@
+﻿@page
+@model App.Cidadao.Api.Areas.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<font color="#FFFAFA"><h3>Você tem certeza que deseja apagar este usuário?</h3></font>
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            Telefone
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.User.PhoneNumber)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.User.Email)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.User.Email)
+        </dd>
+        <dt class="col-sm-2">
+            Usuário
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.User.UserName)
+        </dd>
+        @*<dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.User.Name)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.User.Name)
+            </dd>*@
+    </dl>
+
+    <form method="post">
+        <input type="hidden" asp-for="User.Id" />
+        <input type="submit" value="Apagar" class="btn btn-danger" /> |
+        <a asp-page="./Index">Voltar</a>
+    </form>
+</div>
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            background-color: #A9A9A9;
+        }
+    </style>
+</head>
+<body>
+    <style>
+        body {
+            background-color: #A9A9A9;
+        }
+    </style>
+</body>
+</html>

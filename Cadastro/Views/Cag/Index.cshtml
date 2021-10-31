@@ -1,0 +1,62 @@
+﻿@model IEnumerable<Cadastro.Domain.Entities.Category>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<font color="#FFFAFA"><h1>Classes</h1></font>
+
+<p>
+    <a asp-action="Create">Nova classe</a>
+</p>
+
+<style type="text/css">
+    table {
+        border: groove 2px #000000;
+        background-color: #FFFAFA;
+        color: #FFFAFA;
+    }
+</style>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Detalhes</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Apagar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            background-color: #A9A9A9;
+        }
+    </style>
+</head>
+<body>
+    <style>
+        body {
+            background-color: #A9A9A9;
+        }
+    </style>
+</body>
+</html>

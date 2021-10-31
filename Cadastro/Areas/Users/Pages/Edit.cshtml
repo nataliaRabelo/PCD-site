@@ -1,0 +1,76 @@
+﻿@page
+@model App.Cidadao.Api.Areas.EditModel
+
+@{ ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml"; }
+
+<font color="#FFFAFA"><h1>Editar usuário</h1></font>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            @Html.ValidationSummary()
+            <input asp-for="Input.Id" type="hidden" />
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Input.UserName" class="control-label"></label>
+                <input asp-for="Input.UserName" class="form-control" />
+                <span asp-validation-for="Input.UserName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.PhoneNumber" class="control-label"></label>
+                <input asp-for="Input.PhoneNumber" class="form-control" />
+                <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.Email" class="control-label"></label>
+                <input asp-for="Input.Email" class="form-control" />
+                <span asp-validation-for="Input.Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.Name" class="control-label"></label>
+                <input asp-for="Input.Name" class="form-control" />
+                <span asp-validation-for="Input.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.LastName" class="control-label"></label>
+                <input asp-for="Input.LastName" class="form-control" />
+                <span asp-validation-for="Input.LastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.IsActive" class="control-label"></label>
+                <input asp-for="Input.IsActive" class="form-control" />
+                <span asp-validation-for="Input.IsActive" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            background-color: #A9A9A9;
+        }
+    </style>
+</head>
+<body>
+    <style>
+        body {
+            background-color: #A9A9A9;
+        }
+    </style>
+</body>
+</html>
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

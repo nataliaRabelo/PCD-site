@@ -1,0 +1,59 @@
+﻿@page
+@model App.Cidadao.Api.Areas.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+    <font color="#FFFAFA"><h1>Detalhes do usuário</h1></font>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            Telefone
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.User.PhoneNumber)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.User.Email)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.User.Email)
+        </dd>
+        <dt class="col-sm-2">
+            Usuário
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.User.UserName)
+        </dd>
+        @*<dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.User.Name)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.User.Name)
+            </dd>*@
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.User.Id">Editar</a> |
+    <a asp-page="./Index">Voltar</a>
+</div>
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            background-color: #A9A9A9;
+        }
+    </style>
+</head>
+<body>
+    <style>
+        body {
+            background-color: #A9A9A9;
+        }
+    </style>
+</body>
+</html>
