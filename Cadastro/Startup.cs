@@ -30,10 +30,6 @@ namespace Cadastro
 
             services.AddAutoMapper(typeof(Startup));
 
-
-
-
-            //ojgvf oiesdjfogi jo
              //services.AddDbContext<RegisterContext>(c =>
                  //c.UseInMemoryDatabase("Register"));
 
