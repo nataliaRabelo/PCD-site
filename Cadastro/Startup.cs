@@ -30,11 +30,11 @@ namespace Cadastro
 
             services.AddAutoMapper(typeof(Startup));
 
-             services.AddDbContext<RegisterContext>(c =>
-                 c.UseInMemoryDatabase("Register"));
+             //services.AddDbContext<RegisterContext>(c =>
+                 //c.UseInMemoryDatabase("Register"));
 
-           //services.AddDbContextPool<RegisterContext>(options =>
-                //options.UseSqlServer(Configuration.GetConnectionString("AzureDB")));
+           services.AddDbContextPool<RegisterContext>(options =>
+                options.UseSqlServer(Configuration["ConnecitonStrings:AzureDB"]));
 
             services.AddDefaultIdentity<User>(options =>
             {
