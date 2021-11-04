@@ -19,6 +19,9 @@
 
 </style>
 
+        <form method="post" asp-controller="Products" asp-action="Export">
+            <input type="submit" value="Export" />
+        </form>
 <table class="table">
     <thead>
         <tr>
@@ -52,9 +55,6 @@
         <a asp-action="Details" asp-route-id="@item.Id">Detalhes</a> |
         <a asp-action="Delete" asp-route-id="@item.Id">Apagar</a>
     </td>
-        <form method="post" asp-controller="Products" asp-action="Export">
-            <input type="submit" value="Export" />
-        </form>
 </tr>}
     </tbody>
 </table>

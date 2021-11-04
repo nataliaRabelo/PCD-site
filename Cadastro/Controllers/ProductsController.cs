@@ -167,8 +167,14 @@ namespace Cadastro.Controllers
         
 
         [HttpPost]
-        public IActionResult Export(IList<Product> produtos)
+        public IActionResult Export()
         {
+            var contextProdutos = _context.Products.Include(p => p.Category);
+            if (contextProdutos == null || !contextProdutos.Any())
+            {
+                return null;
+            }
+            var produtos = contextProdutos.ToList();
             DataTable dt = new DataTable("Grid");
             dt.Columns.AddRange(new DataColumn[3] { new DataColumn("Código"),
                                         new DataColumn("Classe"),
@@ -177,7 +183,7 @@ namespace Cadastro.Controllers
 
             foreach (var produto in produtos)
             {
-                dt.Rows.Add(produto.Value, produto.IdCategory, produto.Name);
+                dt.Rows.Add(produto.Value, produto.Category.Name, produto.Name);
             }
 
             using (XLWorkbook wb = new XLWorkbook())
