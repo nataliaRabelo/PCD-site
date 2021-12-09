@@ -33,13 +33,16 @@ namespace Cadastro
             //services.AddDbContext<RegisterContext>(c =>
             //c.UseInMemoryDatabase("Register"));
 
-            services.AddDbContextPool<RegisterContext>(options =>
-            options.UseSqlServer(Configuration["ConnecitonStrings:AWSDB"]));
+            //services.AddDbContextPool<RegisterContext>(options =>
+            //options.UseSqlServer(Configuration["ConnecitonStrings:AWSDB"]));
 
             //var connectionString = Configuration["ConnecitonStrings:AWSDB"];
             //services.AddDbContext<RegisterContext>(options =>
             //options.UseNpgsql(connectionString)
             //);
+            services.AddDbContext<RegisterContext>(options =>
+                        options.UseNpgsql(Configuration.GetConnectionString("AWSDB")));
+                    
 
             services.AddDefaultIdentity<User>(options =>
             {

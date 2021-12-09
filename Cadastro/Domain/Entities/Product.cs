@@ -8,8 +8,10 @@ namespace Cadastro.Domain.Entities
         public string Name { get; set; }
         [DisplayName("Código")]
         public string Value { get; set; }
+        
         [DisplayName("Ativo")]
         public bool Active { get; set; }
+
         [DisplayName("Classe")]
         public int IdCategory { get; set; }
         [DisplayName("Classe")]

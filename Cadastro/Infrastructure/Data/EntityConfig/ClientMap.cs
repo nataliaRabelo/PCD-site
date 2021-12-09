@@ -21,6 +21,7 @@ namespace Cadastro.Infrastructure.Data.EntityConfig
             builder.Property(m => m.Email)
                 .IsRequired()
                 .HasMaxLength(250);
+
         }
     }
 }
