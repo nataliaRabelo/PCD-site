@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Authorization;
 using System.Data;
 using ClosedXML.Excel;
 using System.IO;
+using Microsoft.AspNetCore.Identity;
 
 namespace Cadastro.Controllers
 {
@@ -19,16 +20,21 @@ namespace Cadastro.Controllers
     public class ProductsController : Controller
     {
         private readonly RegisterContext _context;
+        private readonly UserManager<User> _userManager;
 
-        public ProductsController(RegisterContext context)
+        public ProductsController(RegisterContext context, UserManager<User> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         // GET: Products
         public async Task<IActionResult> Index()
         {
-            var registerContext = _context.Products.Include(p => p.Category);
+            var loggedUser = await _userManager.GetUserAsync(User);
+            var registerContext = _context.Products
+                .Where(p => p.UserId == loggedUser.Id)
+                .Include(p => p.Category);
             return View(await registerContext.ToListAsync());
         }
 
@@ -67,6 +73,7 @@ namespace Cadastro.Controllers
         {
             if (ModelState.IsValid)
             {
+                product.User = await _userManager.GetUserAsync(User);
                 _context.Add(product);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -164,7 +171,7 @@ namespace Cadastro.Controllers
             return _context.Products.Any(e => e.Id == id);
         }
 
-        
+
 
         [HttpPost]
         public IActionResult Export()
@@ -178,8 +185,8 @@ namespace Cadastro.Controllers
             DataTable dt = new DataTable("Grid");
             dt.Columns.AddRange(new DataColumn[3] { new DataColumn("Código"),
                                         new DataColumn("Classe"),
-                                        new DataColumn("Nome da classe") }); 
-        
+                                        new DataColumn("Nome da classe") });
+
 
             foreach (var produto in produtos)
             {
@@ -200,4 +207,3 @@ namespace Cadastro.Controllers
     }
 
 }
-        

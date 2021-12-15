@@ -3,15 +3,17 @@ using System;
 using Cadastro.Infrastructure.Data.Common;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Cadastro.Migrations
 {
     [DbContext(typeof(RegisterContext))]
-    partial class RegisterContextModelSnapshot : ModelSnapshot
+    [Migration("20211215022258_Add_product_user_relation")]
+    partial class Add_product_user_relation
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
