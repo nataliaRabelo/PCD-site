@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace App.Cidadao.Api.Areas
 {
-    [Microsoft.AspNetCore.Authorization.Authorize(AuthenticationSchemes = "Identity.Application")]
+    [Microsoft.AspNetCore.Authorization.Authorize(Roles = "Admin", AuthenticationSchemes = "Identity.Application")]
     public class IndexModel : PageModel
     {
         RegisterContext _ctx;

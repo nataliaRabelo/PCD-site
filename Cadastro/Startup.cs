@@ -10,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Ses.DataSus.Integration.WebSite.App_Start.Database;
 using System.Threading.Tasks;
 
 namespace Cadastro
@@ -108,6 +109,7 @@ namespace Cadastro
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
+            app.ApplicationServices.UseIdentityDataInitializer();
         }
     }
 }

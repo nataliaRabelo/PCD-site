@@ -46,7 +46,7 @@ namespace Cadastro.Areas.Identity.Pages.Account
 
             public string Id { get; set; }
             [Required]
-            [EmailAddress]
+           // [EmailAddress]
             [Display(Name = "Email")]
             public string Email { get; set; }
 
@@ -88,7 +88,7 @@ namespace Cadastro.Areas.Identity.Pages.Account
             {
                 var user = new User {
                     UserName = Input.Email,
-                    Email = Input.Email,
+                    //Email = Input.Email,
                     Name = Input.Name,
                     LastName = Input.LastName,
                     IsActive = Input.IsActive,

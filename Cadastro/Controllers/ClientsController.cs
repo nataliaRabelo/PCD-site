@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Cadastro.Controllers
 {
-    [Authorize(/*Roles = "Admin", */AuthenticationSchemes = "Identity.Application")]
+    [Authorize(Roles = "Admin", AuthenticationSchemes = "Identity.Application")]
     public class ClientsController : Controller
     {
         private readonly IClientViewModelService _clientViewModelService;

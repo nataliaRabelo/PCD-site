@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Cadastro.Enumerations;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -25,5 +26,6 @@ namespace Cadastro.Domain.Entities
         public DateTime CreatedAt { get; set; }
         [DisplayName("Código")]
         public int Code { get; set; }
+        public AccountType AccountType { get; set; }
     }
 }
