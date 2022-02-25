@@ -20,6 +20,10 @@ namespace Cadastro.Infrastructure.Data.EntityConfig
             builder.HasOne(m => m.Category)
                 .WithMany()
                 .HasForeignKey(m => m.IdCategory);
+
+            builder.HasOne(x => x.Report)
+                .WithMany(x => x.Produtos)
+                .HasForeignKey(x => x.IdRelatorio);
         }
     }
 }

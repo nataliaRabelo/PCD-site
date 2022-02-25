@@ -13,10 +13,13 @@ namespace Cadastro.Domain.Entities
         [DisplayName("Ativo")]
         public bool Active { get; set; }
 
-        [DisplayName("Classe")]
         public int IdCategory { get; set; }
+        public int? IdRelatorio { get; set; }
+
         [DisplayName("Classe")]
         public virtual Category Category { get; set; }
+
+        public virtual Report Report { get; set; }
         public virtual User User { get; set; }
     }
 }

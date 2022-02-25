@@ -3,15 +3,17 @@ using System;
 using Cadastro.Infrastructure.Data.Common;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Cadastro.Migrations
 {
     [DbContext(typeof(RegisterContext))]
-    partial class RegisterContextModelSnapshot : ModelSnapshot
+    [Migration("20220225001845_Add_Report_name")]
+    partial class Add_Report_name
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -79,7 +81,7 @@ namespace Cadastro.Migrations
                     b.Property<int>("IdCategory")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("IdRelatorio")
+                    b.Property<int>("IdRelatorio")
                         .HasColumnType("integer");
 
                     b.Property<string>("Name")
@@ -346,7 +348,9 @@ namespace Cadastro.Migrations
 
                     b.HasOne("Cadastro.Domain.Entities.Report", "Report")
                         .WithMany("Produtos")
-                        .HasForeignKey("IdRelatorio");
+                        .HasForeignKey("IdRelatorio")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Cadastro.Domain.Entities.User", "User")
                         .WithMany()

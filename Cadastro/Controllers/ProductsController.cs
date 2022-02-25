@@ -35,7 +35,13 @@ namespace Cadastro.Controllers
             var registerContext = _context.Products
                 .Where(p => p.UserId == loggedUser.Id)
                 .Include(p => p.Category);
-            return View(await registerContext.ToListAsync());
+
+            ViewBag.Report =
+                await _context.Reports
+                .Include(x => x.Produtos)
+                .ToListAsync();
+
+            return View(await registerContext.Where(x => !x.IdRelatorio.HasValue).ToListAsync());
         }
 
         // GET: Products/Details/5
@@ -55,6 +61,25 @@ namespace Cadastro.Controllers
             }
 
             return View(product);
+        }
+
+        public async Task<IActionResult> SaveReport(string name)
+        {
+
+            var produtos = await _context
+                .Products
+                .Where(x => !x.IdRelatorio.HasValue)
+                .ToListAsync();
+            
+            if (produtos.Count > 0)
+            {
+                var report = new Report(name, produtos);
+                _context.Reports.Add(report);
+
+                await _context.SaveChangesAsync();
+            }
+
+            return RedirectToAction("Index");
         }
 
         // GET: Products/Create
