@@ -3,15 +3,17 @@ using System;
 using Cadastro.Infrastructure.Data.Common;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Cadastro.Migrations
 {
     [DbContext(typeof(RegisterContext))]
-    partial class RegisterContextModelSnapshot : ModelSnapshot
+    [Migration("20220308232704_adicao_reportController")]
+    partial class adicao_reportController
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -112,24 +114,13 @@ namespace Cadastro.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<int?>("CategoryId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("IdCategory")
-                        .HasColumnType("integer");
-
                     b.Property<string>("Name")
                         .HasColumnType("text");
 
                     b.Property<string>("UserId")
                         .HasColumnType("text");
 
-                    b.Property<string>("Value")
-                        .HasColumnType("text");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("CategoryId");
 
                     b.ToTable("Reports");
                 });
@@ -371,15 +362,6 @@ namespace Cadastro.Migrations
                     b.Navigation("Report");
 
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("Cadastro.Domain.Entities.Report", b =>
-                {
-                    b.HasOne("Cadastro.Domain.Entities.Category", "Category")
-                        .WithMany()
-                        .HasForeignKey("CategoryId");
-
-                    b.Navigation("Category");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

@@ -1,5 +1,4 @@
-﻿@model IEnumerable<Cadastro.Domain.Entities.Product>
-
+﻿
 @{
     ViewData["Title"] = "Plano de classificação";
 }
@@ -22,63 +21,29 @@
 </form>
 
 
+<h1>Produtos disponíveis:</h1>
+@await Html.PartialAsync("_ProductsPartial")
+<form method="post" asp-controller="Products" asp-action="SaveReport">
+    <div class="new-report-container">
+        @Html.ValidationSummary()
+        <label>Salvar relatório:</label>
+        <input required name="name" />
+        <button class="btn" type="submit">Salvar relatório</button>
+    </div>
+</form>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Value)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Category)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Value)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Category.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
-                    <a asp-action="Details" asp-route-id="@item.Id">Detalhes</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Apagar</a>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
-
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
 <p>
     <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
         &#128469;
     </a>
-    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+    <button class="btn btn-primary collapse show" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="true" aria-controls="collapseExample">
         &#128470;
     </button>
 </p>
+
 <div class="collapse" id="collapseExample">
     <div class="card card-body">
-        @await Html.PartialAsync("_ReportsPartial", ViewBag.Report as IEnumerable<Cadastro.Domain.Entities.Report>)      
+        @await Html.PartialAsync("_ReportsPartial", ViewBag.Reports as IEnumerable<Cadastro.Domain.Entities.Report>)
     </div>
 </div>
 
@@ -99,3 +64,10 @@
     </style>
 </body>
 </html>
+
+<script>
+    $(document).ready(function () {
+        $(".collapse.show").click();
+    })
+</script>
+

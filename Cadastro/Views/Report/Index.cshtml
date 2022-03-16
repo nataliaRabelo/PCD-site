@@ -1,0 +1,89 @@
+﻿@model IEnumerable<Cadastro.Domain.Entities.Report>
+
+
+@{
+    ViewData["Title"] = "Reports";
+}
+
+<font color="#FFFAFA"><h1>Lista de planos</h1></font>
+
+
+<style type="text/css">
+    table {
+        border: groove 2px #000000;
+        background-color: #FFFAFA;
+        color: #FFFAFA;
+    }
+</style>
+
+@foreach (var report in Model)
+{
+    <p>
+        <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+            &#128469;
+        </a>
+        <button class="btn btn-primary collapse show" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="true" aria-controls="collapseExample">
+            &#128470;
+        </button>
+    </p>
+    <div class="collapse" id="collapseExample">
+        <div class="card card-body">
+            <form method="post" asp-controller="Products" asp-action="Export">
+                <input type="submit" value="Export" />
+            </form>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Category</th>
+                        <th>Value</th>
+                        <th>Name</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <caption>report.Name</caption>
+                <tbody>
+                    @if (report != null)
+                    {
+                        foreach (var product in report?.Produtos)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(item => report.Value)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(item => report.Category.Name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(item => report.Name)
+                                </td>
+                                <td>
+                                    <a asp-action="Edit" asp-route-id="@product.Id">Editar</a> |
+                                    <a asp-action="Details" asp-route-id="@product.Id">Detalhes</a> |
+                                    <a asp-action="Delete" asp-route-id="@product.Id">Apagar</a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            background-color: #A9A9A9;
+        }
+    </style>
+</head>
+<body>
+    <style>
+        body {
+            background-color: #A9A9A9;
+        }
+    </style>
+</body>
+</html>

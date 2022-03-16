@@ -1,17 +1,21 @@
 ﻿@model IEnumerable<Cadastro.Domain.Entities.Report>
+<h2>Lista de relatórios: </h2>
+    @foreach (var report in Model)
+    {
+<div class="reports-container">
+        <div class="report">
+            <div class="product-infos">
+                <h4 class="report-name">@report.Name: </h4>
+                @await Html.PartialAsync("_ProductsPartial", report.Produtos)
+            </div>
+            <div class="action-buttons">
+                <form action="/report/delete/@report.Id" method="post">
+                    @Html.AntiForgeryToken()
+                    <button class="btn btn-danger">Deletar</button>
+                </form>
+                <a href="/report/edit/@report.Id" class="btn btn-primary">Editar</a>
+            </div>
+        </div>
+</div>
+    }
 
-<form method="post" asp-controller="Products" asp-action="SaveReport">
-    <div class="form-control">
-        @foreach (var report in Model)
-        {
-            <p>@report.Name</p>
-            @foreach (var product in report.Produtos)
-            {
-                <p>@(product.Name),</p>
-            }
-        }
-        <label>Nome do relatório:</label>
-        <input name="name" />
-        <button class="btn" type="submit">Salvar relatório</button>
-    </div>
-</form>
