@@ -32,18 +32,25 @@ namespace Cadastro.Controllers
         public async Task<IActionResult> Index()
         {
             var loggedUser = await _userManager.GetUserAsync(User);
-            var registerContext = _context.Products
-                .Where(p => p.UserId == loggedUser.Id)
-                .Include(p => p.Category);
 
             ViewBag.Reports =
                 await _context.Reports
                 .Include(x => x.Produtos).ThenInclude(x => x.Category)
+                .Where(x=>x.UserId == loggedUser.Id)
                 .ToListAsync();
 
             var avaliableProducts = await _context.Products
                 .OrderBy(x=>x.Id)
-                .Where(x => !x.IdRelatorio.HasValue).ToListAsync();
+                .Where(
+                    x => !x.IdRelatorio.HasValue && 
+                    x.UserId == loggedUser.Id)
+                .ToListAsync();
+
+            var test =  _context.Products
+                .OrderBy(x => x.Id)
+                .Where(
+                    x => !x.IdRelatorio.HasValue &&
+                    x.UserId == loggedUser.Id).ToQueryString();
 
             return View(avaliableProducts);
         }

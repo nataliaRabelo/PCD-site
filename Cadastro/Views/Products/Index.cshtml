@@ -21,14 +21,14 @@
 </form>
 
 
-<h1>Produtos disponíveis:</h1>
+
 @await Html.PartialAsync("_ProductsPartial")
 <form method="post" asp-controller="Products" asp-action="SaveReport">
     <div class="new-report-container">
         @Html.ValidationSummary()
-        <label>Salvar relatório:</label>
+        <label>Título do plano:</label>
         <input required name="name" />
-        <button class="btn" type="submit">Salvar relatório</button>
+        <button class="btn" type="submit">Salvar plano</button>
     </div>
 </form>
 
