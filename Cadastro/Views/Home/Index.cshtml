@@ -1,203 +1,112 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-
-<div class="text-center">
-    <font color="#00FA9A"><h1 class="display-1">Tech PCD</h1></font>
-</div>
-
-
+<!DOCTYPE html>
 <html>
 <head>
-    <title></title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style4.css">
     <style>
-        html, body {
-            height: 100%;
-            margin: 0;
-        }
-
         body {
-            background: black;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        canvas {
-            border: 1px solid white;
+            background-color: #3DC9BD;
         }
     </style>
+    <div class="text-center">
+        <font face="Trebuchet MS" color="#FFFAFA"><h1 class="display-1">Tech PCD</h1></font>
+    </div>
 </head>
 <body>
-    <canvas width="400" height="400" id="game"></canvas>
-    <script>
-var canvas = document.getElementById('game');
-var context = canvas.getContext('2d');
+    <table align="center">
+        <tr>
+            <td>Arquivologia</td>
+            <td>Atividade-meio</td>
+            <td>Atividade-fim</td>
+            <td>Identificação arquivística</td>
+            <td>Atividade</td>
+            <td>Tipo documental</td>
+        </tr>
+        <tr>
+            <td colspan="2">Ordem original</td>
+            <td>Diplomática</td>
+            <td>Subfunção</td>
+            <td>Tipologia documental</td>
+            <td>Gênese documental</td>
+        </tr>
+        <tr>
+            <td colspan="4">Proveniência</td>
+            <td rowspan="3">Vínculo arquivístico</td>
+            <td>Ordenação</td>
+        </tr>
+        <tr>
+            <td rowspan="2">Arquivos</td>
+            <td>Respeito aos fundos</td>
+            <td>Organicidade</td>
+            <td>Classificação funcional</td>
+            <td>Documento de arquivo</td>
+        </tr>
+        <tr>
+            <td>Arranjo</td>
+            <td>Função</td>
+            <td>Arranjo</td>
+            <td>Série</td>
+        </tr>
+    </table>
+    <style>
+        table {
+            border-spacing: 0.5rem;
+        }
 
-var grid = 16;
-var count = 0;
+        td {
+            padding: 0.5rem;
+            text-align: center;
+            height: 90px;
+        }
 
-var snake = {
-  x: 160,
-  y: 160,
+            td:nth-child(1) {
+                background: hsl(150, 50%, 50%);
+            }
 
-  // snake velocity. moves one grid length every frame in either the x or y direction
-  dx: grid,
-  dy: 0,
+            td:nth-child(2) {
+                background: hsl(160, 60%, 50%);
+            }
 
-  // keep track of all grids the snake body occupies
-  cells: [],
+            td:nth-child(3) {
+                background: hsl(170, 70%, 50%);
+            }
 
-  // length of the snake. grows when eating an apple
-  maxCells: 4
-};
-var apple = {
-  x: 320,
-  y: 320
-};
+            td:nth-child(4) {
+                background: hsl(180, 80%, 50%);
+            }
 
-// get random whole numbers in a specific range
-/**
- * Returns a random number between min (inclusive) and max (exclusive)
- */
-function getRandomArbitrary(min, max) {
-    return Math.random() * (max - min) + min;
-}
+            td:nth-child(5) {
+                background: hsl(190, 90%, 50%);
+            }
 
-/**
- * Returns a random integer between min (inclusive) and max (inclusive).
- * The value is no lower than min (or the next integer greater than min
- * if min isn't an integer) and no greater than max (or the next integer
- * lower than max if max isn't an integer).
- * Using Math.round() will give you a non-uniform distribution!
- */
-function getRandomInt(min, max) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-function getRandomInt(min, max) {
-  return Math.floor(Math.random() * (max - min)) + min;
-}
+            td:nth-child(6) {
+                background: hsl(200, 99%, 50%);
+            }
+    </style>
+    <div class="text-sm-center">
+        <font color="#00221F"> <h6 class="disabled"> Pulada de linha </h6> </font>
+    </div>
+    <div class="text-sm-center">
+        <font color="#008AAF"> <h6 class="disabled"> By Natália Bruno Rabelo</h6> </font>
+    </div>
 
-// game loop
-function loop() {
-  requestAnimationFrame(loop);
-
-  // slow game loop to 15 fps instead of 60 (60/15 = 4)
-  if (++count < 4) {
-    return;
-  }
-
-  count = 0;
-  context.clearRect(0,0,canvas.width,canvas.height);
-
-  // move snake by it's velocity
-  snake.x += snake.dx;
-  snake.y += snake.dy;
-
-  // wrap snake position horizontally on edge of screen
-  if (snake.x < 0) {
-    snake.x = canvas.width - grid;
-  }
-  else if (snake.x >= canvas.width) {
-    snake.x = 0;
-  }
-
-  // wrap snake position vertically on edge of screen
-  if (snake.y < 0) {
-    snake.y = canvas.height - grid;
-  }
-  else if (snake.y >= canvas.height) {
-    snake.y = 0;
-  }
-
-  // keep track of where snake has been. front of the array is always the head
-  snake.cells.unshift({x: snake.x, y: snake.y});
-
-  // remove cells as we move away from them
-  if (snake.cells.length > snake.maxCells) {
-    snake.cells.pop();
-  }
-
-  // draw apple
-  context.fillStyle = 'red';
-  context.fillRect(apple.x, apple.y, grid-1, grid-1);
-
-  // draw snake one cell at a time
-  context.fillStyle = 'green';
-  snake.cells.forEach(function(cell, index) {
-
-    // drawing 1 px smaller than the grid creates a grid effect in the snake body so you can see how long it is
-    context.fillRect(cell.x, cell.y, grid-1, grid-1);
-
-    // snake ate apple
-    if (cell.x === apple.x && cell.y === apple.y) {
-      snake.maxCells++;
-
-      // canvas is 400x400 which is 25x25 grids
-      apple.x = getRandomInt(0, 25) * grid;
-      apple.y = getRandomInt(0, 25) * grid;
-    }
-
-    // check collision with all cells after this one (modified bubble sort)
-    for (var i = index + 1; i < snake.cells.length; i++) {
-
-      // snake occupies same space as a body part. reset game
-      if (cell.x === snake.cells[i].x && cell.y === snake.cells[i].y) {
-        snake.x = 160;
-        snake.y = 160;
-        snake.cells = [];
-        snake.maxCells = 4;
-        snake.dx = grid;
-        snake.dy = 0;
-
-        apple.x = getRandomInt(0, 25) * grid;
-        apple.y = getRandomInt(0, 25) * grid;
-      }
-    }
-  });
-}
-
-// listen to keyboard events to move the snake
-document.addEventListener('keydown', function(e) {
-  // prevent snake from backtracking on itself by checking that it's
-  // not already moving on the same axis (pressing left while moving
-  // left won't do anything, and pressing right while moving left
-  // shouldn't let you collide with your own body)
-
-  // left arrow key
-  if (e.which === 37 && snake.dx === 0) {
-    snake.dx = -grid;
-    snake.dy = 0;
-  }
-  // up arrow key
-  else if (e.which === 38 && snake.dy === 0) {
-    snake.dy = -grid;
-    snake.dx = 0;
-  }
-  // right arrow key
-  else if (e.which === 39 && snake.dx === 0) {
-    snake.dx = grid;
-    snake.dy = 0;
-  }
-  // down arrow key
-  else if (e.which === 40 && snake.dy === 0) {
-    snake.dy = grid;
-    snake.dx = 0;
-  }
-});
-
-// start the game
-requestAnimationFrame(loop);
-    </script>
+    <div class="text-sm-center">
+        <font color="#008AAF"> <h6 class="disabled"> Relate problemas</h6> </font>
+        <a href="mailto:nataliabruno@id.uff.br"> <img src="https://img.shields.io/badge/-Gmail-%23333?style=for-the-badge&logo=gmail&logoColor=white" target="_blank"> </a>
+        <a href="https://www.linkedin.com/in/nat%C3%A1lia-bruno-rabelo-63ba68158/" target="_blank"> <img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"> </a>
+        <a href="http://buscatextual.cnpq.br/buscatextual/visualizacv.do?id=K2448461E1&tokenCaptchar=03AGdBq27_PsvDwvTC3QmP-Z7tslO6UC8A0SQiT6mSxDz_8Um6gz2-unk2Hj-Lzf2Ol0_ItTcW0vRBks21FW51b81ze_ZvnHPh6vRV-kWZYsdkp-gKoC3J0QWXENHmYa5ipBGx_XKdTzFF-rPju3Nv3syuigAbNuz5sLmBhA5jC8hCV_63gJa7gYKZRjoJdFjLFHU-8ndv3fZYITeVvEDOYiR_6hV-9XBOehoUzavthkt8FVHdzA58LrAS9hqAKl-ECOSOMaoTzZobUtPPi201d2HgxL0NGopt6VopWaBVWVhL08nXSt7ZLT6RwmqRHXhV1DbJ87tweq5I75mq7g1BnkRWmSVzU_GOii7aMrwygZFD2rdpRKU8BBag7d-5QNSxO8NBERXn1Qg4Mzc3hk1_WZGP8tuqHzoCvfpMaMjt828fxs9_XRLzTk3KZ6UON_OVm5f8ie9cHLQk4wPe7IJRtxrmA0jytyWSbQ" target="_blank"> <img src="https://journal.nuped.com.br/index.php/livreacesso/libraryFiles/downloadPublic/88" target="_blank" height="30" width="40"> </a>
+    </div>
+    <style>
+        body {
+            background-color: #00221F;
+        }
+    </style>
 </body>
 </html>
 
-<div class="text-sm-center">
-    <font color="#FFFAFA"><h6 class="disabled">Criado por Natália Bruno Rabelo</h6></font>
-</div>
 
-<div class="text-sm-center">
-    <font color="#FFFAFA"><h6 class="disabled">Relate problemas - nataliabruno@id.uff.br</h6></font>
-</div>

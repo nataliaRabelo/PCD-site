@@ -3,21 +3,20 @@
     ViewData["Title"] = "Plano de classificação";
 }
 
-<font color="#FFFAFA"><h1>Plano de classificação</h1></font>
+<font face = "Trebuchet MS" color="#FFFAFA"><h1>Plano de classificação</h1></font>
 
 <p>
-    <a asp-action="Create">Nova classe</a>
+    <a style="color: #008AAF;" asp-action="Create">Nova classe</a>
 </p>
 
 <style type="text/css">
     table {
-        border: groove 2px #000000;
         background-color: #FFFAFA;
         color: #FFFAFA;
     }
 </style>
 <form method="post" asp-controller="Products" asp-action="Export">
-    <input type="submit" value="Export" />
+    <input type="submit" value="Export" style="background-color: #008AAF; border-color: #008AAF;"/>
 </form>
 
 
@@ -26,25 +25,24 @@
 <form method="post" asp-controller="Products" asp-action="SaveReport">
     <div class="new-report-container">
         @Html.ValidationSummary()
-        <label>Título do plano:</label>
+        <font color="#FFFAFA"><label>Título do plano:</label></font>
         <input required name="name" />
-        <button class="btn" type="submit">Salvar plano</button>
+        <button class="btn" type="submit" style="background-color: #008AAF">Salvar plano</button>
     </div>
 </form>
 
+
 <p>
-    <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+    <a class="btn btn-primary" style="background-color: #008AAF; border-color: #FFFAFA" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample ">
         &#128469;
     </a>
-    <button class="btn btn-primary collapse show" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="true" aria-controls="collapseExample">
+    <button class="btn btn-primary collapse show" style="background-color: #008AAF; border-color: #FFFAFA" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="true" aria-controls="collapseExample">
         &#128470;
     </button>
 </p>
 
 <div class="collapse" id="collapseExample">
-    <div class="card card-body">
-        @await Html.PartialAsync("_ReportsPartial", ViewBag.Reports as IEnumerable<Cadastro.Domain.Entities.Report>)
-    </div>
+       @await Html.PartialAsync("_ReportsPartial", ViewBag.Reports as IEnumerable<Cadastro.Domain.Entities.Report>)
 </div>
 
 <!DOCTYPE html>
@@ -59,7 +57,7 @@
 <body>
     <style>
         body {
-            background-color: #A9A9A9;
+            background-color: #00221F;
         }
     </style>
 </body>

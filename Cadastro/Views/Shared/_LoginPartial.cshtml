@@ -2,39 +2,71 @@
 
 @inject SignInManager<Cadastro.Domain.Entities.User> SignInManager
 @inject UserManager<Cadastro.Domain.Entities.User> UserManager
+    <!DOCTYPE html>
+    <html>
 
-<ul class="navbar-nav">
-    @if (SignInManager.IsSignedIn(User))
-    {
-        @if (User.IsInRole(Cadastro.Enumerations.AccountType.Admin.ToString()))
-        {
-            <li class="nav-item">
-                <a class="navbar-brand" asp-area="Users" asp-page="/Index">Cadastro</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-dark" asp-area="" asp-controller="Cag" asp-action="Index">Classes</a>
-            </li>
-        }
-        <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="" asp-controller="Products" asp-action="Index">Plano de classificação</a>
-        </li>
-        <li class="nav-item">
-            <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                @Html.AntiForgeryToken()
-                <button id="logout" type="submit" class="nav-link btn btn-link text-dark">Logout</button>
-            </form>
-        </li>
-    }
-    else
-    {
-        <li class="nav-item">
-            <a class="nav-link text-dark" id="register" asp-area="Identity" asp-page="/Account/Register">Register</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link text-dark" id="login" asp-area="Identity" asp-page="/Account/Login">Login</a>
-        </li>
-    }
-</ul>
+        <head>
+
+            <!-- Include Bootstrap CSS -->
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+            <style>
+                /* Modify the background color */
+
+                .navbar-custom {
+                    background-color: #008AAF;
+                }
+                    /* Modify brand and text color */
+
+                    .navbar-custom .navbar-brand,
+                    .navbar-custom .navbar-text {
+                        color: #FFFAFA;
+                    }
+            </style>
+        </head>
+
+    <body>
+        <div class="container">
+            <nav class="navbar navbar-custom" style="border-radius:50px;">
+                <ul class="navbar-nav">
+                    @if (SignInManager.IsSignedIn(User))
+                    {
+                        @if (User.IsInRole(Cadastro.Enumerations.AccountType.Admin.ToString()))
+                        {
+                            <li class="nav-item">
+                                <a class="navbar-brand" asp-area="Users" asp-page="/Index">Cadastro</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Cag" asp-action="Index">Classes</a>
+                            </li>
+                        }
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Products" asp-action="Index">Plano de classificação</a>
+                        </li>
+                        <li class="nav-item">
+                            <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                                @Html.AntiForgeryToken()
+                                <button id="logout" type="submit" class="nav-link btn btn-link text-dark">Logout</button>
+                            </form>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" id="register" asp-area="Identity" asp-page="/Account/Register">Register</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" id="login" asp-area="Identity" asp-page="/Account/Login">Login</a>
+                        </li>
+                    }
+                </ul>
+            </nav>
+
+        </div>
+
+    </body>
+
+</html>
+

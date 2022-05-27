@@ -1,11 +1,11 @@
 ﻿@model IEnumerable<Cadastro.Domain.Entities.Report>
-<h2>Planos salvos</h2>
+<font face = "Trebuchet MS" color="#FFFAFA"><h2>Planos salvos</h2></font>
     @foreach (var report in Model)
     {
-<div class="reports-container">
+<div class="reports">
         <div class="report">
             <div class="product-infos">
-                <h4 class="report-name">@report.Name: </h4>
+                <font face = "Trebuchet MS" color="#FFFAFA"><h4 class="report-name">@report.Name: </h4></font>
                 @await Html.PartialAsync("_ProductsPartial", report.Produtos)
             </div>
             <div class="action-buttons">
