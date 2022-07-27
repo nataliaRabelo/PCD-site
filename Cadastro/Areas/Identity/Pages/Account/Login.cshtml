@@ -1,57 +1,57 @@
 ﻿@page
 @model LoginModel
 
-    <style>
-        -webkit-text-stroke-width: 2px; /* largura da borda */
-        -webkit-text-stroke-color: #000; /* cor da borda */
-    </style>
+<style>
+    -webkit-text-stroke-width: 2px; /* largura da borda */
+    -webkit-text-stroke-color: #000; /* cor da borda */
+</style>
 
-    <div class="text-center">
+<div class="text-center">
 
-        <font color="#00FA9A"><h1 class="display-1">Tech PCD</h1></font>
-    </div>
-    <div class="text-center">
-        <font color="#FFFAFA"><h5 class="disabled">O seu melhor plano de classificação.</h5></font>
-    </div>
-    @{
-        ViewData["Title"] = "Log in";
-    }
-
+    <font face="Trebuchet MS" color="#FFFAFA"><h1 class="display-1">Tech PCD</h1></font>
+</div>
+@{
+    ViewData["Title"] = "Log in";
+}
+<font face="Trebuchet MS" color="#FFFAFA">
     <h1>@ViewData["Title"]</h1>
+</font>
     <div class="row">
         <div class="col-md-4">
             <section>
                 <form id="account" method="post">
-                    <h4>Entre ou cadastre-se</h4>
-                    <hr />
-                    <div asp-validation-summary="All" class="text-danger"></div>
-                    <div class="form-group">
-                        <label asp-for="Input.UserName"></label>
-                        <input asp-for="Input.UserName" class="form-control" />
-                        <span asp-validation-for="Input.UserName" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label>Senha</label>
-                        <input asp-for="Input.Password" class="form-control" />
-                        <span asp-validation-for="Input.Password" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <div class="checkbox">
-                            <label asp-for="Input.RememberMe">
-                                <input asp-for="Input.RememberMe" />
-                                @Html.DisplayNameFor(m => m.Input.RememberMe)
-                            </label>
+                    <font face="Trebuchet MS" color="#FFFAFA">
+                        <h4>Entre ou cadastre-se</h4>
+                    </font>
+                        <hr />
+                        <div asp-validation-summary="All" class="text-danger"></div>
+                        <div class="form-group">
+                            <label asp-for="Input.UserName"></label>
+                            <input asp-for="Input.UserName" class="form-control" />
+                            <span asp-validation-for="Input.UserName" class="text-danger"></span>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-primary">Log in</button>
-                    </div>
-                    <div class="form-group">
+                        <div class="form-group">
+                            <label>Senha</label>
+                            <input asp-for="Input.Password" class="form-control" />
+                            <span asp-validation-for="Input.Password" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <div class="checkbox">
+                                <label asp-for="Input.RememberMe">
+                                    <input asp-for="Input.RememberMe" />
+                                    @Html.DisplayNameFor(m => m.Input.RememberMe)
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary" style="background-color: #008AAF; border-color: #008AAF;">Log in</button>
+                        </div>
+                        <div class="form-group">
 
-                        <p>
-                            <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Registre-se</a>
-                        </p>
-                    </div>
+                            <p>
+                                <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Registre-se</a>
+                            </p>
+                        </div>
                 </form>
             </section>
         </div>
@@ -63,17 +63,22 @@
         <style>
             body {
                 background-color: #A9A9A9;
+
+            }
+            div {
+                color: #FFFAFA;
             }
         </style>
     </head>
     <body>
         <style>
             body {
-                background-color: #A9A9A9;
+                background-color: #00221F;
             }
         </style>
     </body>
 </html>
+
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
